@@ -33,7 +33,7 @@
 
 <p>jsoncons is a C++ library for the construction of <a href="http://www.json.org">JavaScript Object Notation (JSON)</a>. It supports parsing a JSON file or string into a <code>json</code> value, building a <code>json</code> value in C++ code, and serializing a <code>json</code> value to a file or string. It also provides an API for generating json read and write events in code, somewhat analogously to SAX processing in the XML world. Consult the wiki for the latest <a href="https://github.com/danielaparker/jsoncons/wiki">documentation and tutorials</a> and <a href="https://github.com/danielaparker/jsoncons/wiki/Roadmap">roadmap</a>. </p>
 
-<p>jsoncons uses some features that are new to C++ 11, particularly <a href="http://thbecker.net/articles/rvalue_references/section_02.html">move semantics</a> and the <a href="http://en.cppreference.com/w/cpp/concept/AllocatorAwareContainer">AllocatorAwareContainer</a> concept. It has been tested with MS VC++ 2013, MS VC++ 2015, and recent versions of clang and gcc. </p>
+<p>jsoncons uses some features that are new to C++ 11, particularly <a href="http://thbecker.net/articles/rvalue_references/section_02.html">move semantics</a> and the <a href="http://en.cppreference.com/w/cpp/concept/AllocatorAwareContainer">AllocatorAwareContainer</a> concept. It has been tested with MS VC++ 2013, MS VC++ 2015, GCC 4.8, GCC 4.9, and recent versions of clang. Note that <code>std::regex</code> isn't fully implemented in GCC 4.8., so <code>jsoncons_ext/jsonpath</code> regular expression filters aren't supported.</p>
 
 <h2>
 <a id="using-the-jsoncons-library" class="anchor" href="#using-the-jsoncons-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using the jsoncons library</h2>
@@ -244,10 +244,10 @@ using jsoncons::json_deserializer;
     json_deserializer handler;
 
     csv_parameters params;
-    params.assume_header(<span class="pl-c1">true</span>);
-    params.trim(<span class="pl-c1">true</span>);
-    params.ignore_empty_values(<span class="pl-c1">true</span>);
-    params.column_types({<span class="pl-s"><span class="pl-pds">"</span>integer<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>});
+    params.assume_header(<span class="pl-c1">true</span>)
+          .trim(<span class="pl-c1">true</span>)
+          .ignore_empty_values(<span class="pl-c1">true</span>)
+          .column_types({<span class="pl-s"><span class="pl-pds">"</span>integer<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>string<span class="pl-pds">"</span></span>});
 
     csv_reader <span class="pl-en">reader</span>(is,handler,params);
     reader.read();
